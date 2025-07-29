@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_vibe_app/modules/profile/profile_screen.dart';
 import 'package:flutter_vibe_app/shared/widgets/tab_view.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,10 +19,11 @@ class HomeScreen extends StatelessWidget {
           navigationBar: const CupertinoNavigationBar(
             middle: Text('Home'),
           ),
-          child: Center(
-            child: Text(
-              'Home',
-            ),
+          child: WebView(
+            initialUrl: 'about:blank',
+            onWebViewCreated: (controller) {
+              controller.loadUrl('http://localhost:8080');
+            },
           ),
         ),
         const ProfileScreen(),

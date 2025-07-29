@@ -14,7 +14,6 @@ import 'package:flutter_vibe_app/core/services/sync_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_vibe_app/app.dart';
-import 'package:flutter_vibe_app/firebase_options.dart';
 import 'package:flutter_vibe_app/core/services/auth_service.dart';
 import 'package:flutter_vibe_app/core/services/cache_service.dart';
 import 'package:flutter_vibe_app/core/services/feature_flag_service.dart';
@@ -158,9 +157,7 @@ void main() async {
   const env = String.fromEnvironment('ENV', defaultValue: 'dev');
   WidgetsFlutterBinding.ensureInitialized();
   await ConfigService.load(env);
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
   Stripe.publishableKey = 'YOUR_STRIPE_PUBLISHABLE_KEY';
   await initHive();
   await initSyncService();
