@@ -14,3 +14,61 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Deploying FlutterVibe to Firebase
+
+1.  **Install the Firebase CLI:** If you haven't already, install the Firebase CLI by running the following command in your terminal:
+
+    ```
+    npm install -g firebase-tools
+    ```
+
+2.  **Login to Firebase:** Login to your Firebase account by running the following command:
+
+    ```
+    firebase login
+    ```
+
+3.  **Initialize Firebase:** In the `flutter_vibe_app` directory, run the following command to initialize Firebase:
+
+    ```
+    firebase init
+    ```
+
+    When prompted, select the following options:
+
+    *   **Which Firebase features do you want to set up for this directory?** Select `Hosting`.
+    *   **What do you want to use as your public directory?** Enter `build/web`.
+    *   **Configure as a single-page app (rewrite all urls to /index.html)?** Enter `y`.
+
+4.  **Build the web app:** Build the web app by running the following command:
+
+    ```
+    flutter build web
+    ```
+
+5.  **Deploy to Firebase Hosting:** Deploy the web app to Firebase Hosting by running the following command:
+
+    ```
+    firebase deploy --only hosting
+    ```
+
+## Uploading/Deploying the Docker file
+
+1.  **Enable the Cloud Build and Cloud Run APIs:** In the Google Cloud Console, enable the Cloud Build and Cloud Run APIs for your project.
+
+2.  **Build the Docker image:** In the `flutter_vibe_app` directory, run the following command to build the Docker image:
+
+    ```
+    gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/fluttervibe
+    ```
+
+    Replace `YOUR_PROJECT_ID` with your Google Cloud project ID.
+
+3.  **Deploy the Docker image to Cloud Run:** Deploy the Docker image to Cloud Run by running the following command:
+
+    ```
+    gcloud run deploy fluttervibe --image gcr.io/YOUR_PROJECT_ID/fluttervibe --platform managed
+    ```
+
+    Replace `YOUR_PROJECT_ID` with your Google Cloud project ID.
