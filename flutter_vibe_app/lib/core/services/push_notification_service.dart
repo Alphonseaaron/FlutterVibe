@@ -1,0 +1,15 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+class PushNotificationService {
+  final FirebaseMessaging _fcm = FirebaseMessaging.instance;
+
+  Future<void> init() async {
+    await _fcm.requestPermission();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      // Handle foreground messages
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      // Handle background messages
+    });
+  }
+}
