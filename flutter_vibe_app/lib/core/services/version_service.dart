@@ -19,8 +19,7 @@ class VersionService extends ChangeNotifier {
 
   Future<void> _fetchLatestVersion() async {
     try {
-      final response = await http.get(Uri.parse(
-          'https://gist.githubusercontent.com/jules-agent/590d916f76f384833722b37803698782/raw/version.json'));
+      final response = await http.get(Uri.parse('YOUR_VERSION_URL_HERE'));
       if (response.statusCode == 200) {
         final Map<String, dynamic> json = jsonDecode(response.body);
         _latestVersion = json['latest_version'];

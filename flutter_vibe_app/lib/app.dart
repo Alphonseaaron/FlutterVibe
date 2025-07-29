@@ -14,6 +14,7 @@ import 'package:flutter_vibe_app/modules/onboarding/onboarding_screen.dart'
     deferred as onboarding;
 import 'package:flutter_vibe_app/modules/settings/settings_screen.dart'
     deferred as settings;
+import 'package:flutter_vibe_app/modules/prompt/prompt_screen.dart';
 import 'package:flutter_vibe_app/modules/subscription/subscription_screen.dart';
 import 'package:flutter_vibe_app/shared/widgets/auth_guard.dart';
 import 'package:flutter_vibe_app/shared/widgets/cupertino_switch_list_tile.dart';
@@ -101,6 +102,7 @@ class App extends StatelessWidget {
                       },
                     ),
                 '/subscription': (context) => const SubscriptionScreen(),
+                '/prompt': (context) => const PromptScreen(),
               },
             );
           },

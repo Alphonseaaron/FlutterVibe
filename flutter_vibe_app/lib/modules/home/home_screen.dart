@@ -15,10 +15,15 @@ class HomeScreen extends StatelessWidget {
       ],
       pages: [
         CupertinoPageScaffold(
-          navigationBar: const CupertinoNavigationBar(
-            middle: Text('Home'),
+          navigationBar: CupertinoNavigationBar(
+            middle: const Text('Home'),
+            trailing: CupertinoButton(
+              padding: EdgeInsets.zero,
+              child: const Icon(CupertinoIcons.add),
+              onPressed: () => Navigator.of(context).pushNamed('/prompt'),
+            ),
           ),
-          child: Center(
+          child: const Center(
             child: Text(
               'Home',
             ),

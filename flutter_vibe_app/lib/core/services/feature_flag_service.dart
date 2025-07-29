@@ -7,8 +7,7 @@ class FeatureFlagService extends ChangeNotifier {
 
   Future<void> load() async {
     try {
-      final response = await http.get(Uri.parse(
-          'https://gist.githubusercontent.com/jules-agent/590d916f76f384833722b37803698782/raw/feature_flags.json'));
+      final response = await http.get(Uri.parse('YOUR_FEATURE_FLAG_URL_HERE'));
       if (response.statusCode == 200) {
         final Map<String, dynamic> json = jsonDecode(response.body);
         _featureFlags = json.map((key, value) => MapEntry(key, value as bool));

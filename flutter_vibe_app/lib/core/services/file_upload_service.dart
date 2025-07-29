@@ -14,7 +14,7 @@ class FileUploadService extends ChangeNotifier {
       final file = File(result.files.single.path!);
       final dio = Dio();
       await dio.post(
-        'https://httpbin.org/post',
+        'YOUR_UPLOAD_URL_HERE',
         data: FormData.fromMap({
           'file': await MultipartFile.fromFile(file.path),
         }),

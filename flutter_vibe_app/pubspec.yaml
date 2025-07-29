@@ -39,6 +39,8 @@ dependencies:
   flutterwave_standard: ^1.0.7
   flutter_paystack: ^1.0.7
   in_app_purchase: ^3.1.0
+  flutter_inappwebview: ^5.7.2+3
+  url_launcher: ^6.1.7
 
 dev_dependencies:
   flutter_test:
