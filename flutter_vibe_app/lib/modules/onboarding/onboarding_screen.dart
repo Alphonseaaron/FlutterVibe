@@ -18,7 +18,7 @@ class OnboardingScreen extends StatelessWidget {
               controller: controller.pageController,
               children: [
                 _buildPage(
-                  title: 'Welcome to AAppVibe',
+                  title: 'Welcome to AppVibe',
                   subtitle: 'The best way to build your app.',
                   animation: 'assets/animations/character.riv',
                 ),

@@ -48,7 +48,7 @@ class App extends StatelessWidget {
           builder: (context, localizationService, child) {
             return CupertinoApp(
               locale: localizationService.locale,
-              title: 'AAppVibe',
+              title: 'AppVibe',
               theme: AppTheme.light,
               darkTheme: AppTheme.dark,
               navigatorObservers: [
@@ -125,7 +125,7 @@ class TabletLayout extends StatelessWidget {
     return CupertinoSplitView(
       left: CupertinoPageScaffold(
         navigationBar: const CupertinoNavigationBar(
-          middle: Text('AAppVibe'),
+          middle: Text('AppVibe'),
         ),
         child: ListView(
           children: [
