@@ -10,7 +10,8 @@ class PromptController extends ChangeNotifier {
     final code = await _appGenerationService.generateApp(promptController.text);
     Navigator.of(context).push(
       CupertinoPageRoute(
-        builder: (_) => PreviewScreen(code: code),
+        builder: (_) =>
+            PreviewScreen(code: code, prompt: promptController.text),
       ),
     );
   }

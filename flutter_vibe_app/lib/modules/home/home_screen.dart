@@ -11,6 +11,7 @@ class HomeScreen extends StatelessWidget {
     return TabView(
       tabs: const [
         Icon(CupertinoIcons.home),
+        Icon(CupertinoIcons.folder),
         Icon(CupertinoIcons.person),
       ],
       pages: [
@@ -29,6 +30,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
+        const ProjectsScreen(),
         const ProfileScreen(),
       ],
     );

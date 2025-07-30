@@ -2,27 +2,42 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_vibe_app/core/services/app_build_service.dart';
+import 'package:flutter_vibe_app/core/services/project_service.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PreviewScreen extends StatelessWidget {
   final String code;
+  final String prompt;
 
-  const PreviewScreen({super.key, required this.code});
+  const PreviewScreen({super.key, required this.code, required this.prompt});
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: const Text('Preview'),
-        trailing: CupertinoButton(
-          padding: EdgeInsets.zero,
-          child: const Icon(CupertinoIcons.download_circle),
-          onPressed: () async {
-            final url = await AppBuildService().buildApp(code);
-            if (await canLaunch(url)) {
-              await launch(url);
-            }
-          },
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              child: const Icon(CupertinoIcons.download_circle),
+              onPressed: () async {
+                final url = await AppBuildService().buildApp(code);
+                if (await canLaunch(url)) {
+                  await launch(url);
+                }
+              },
+            ),
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              child: const Icon(CupertinoIcons.add),
+              onPressed: () {
+                _showSaveDialog(context);
+              },
+            ),
+          ],
         ),
       ),
       child: InAppWebView(
@@ -50,6 +65,40 @@ class PreviewScreen extends StatelessWidget {
           </html>
         """),
       ),
+    );
+  }
+
+  void _showSaveDialog(BuildContext context) {
+    final nameController = TextEditingController();
+    showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          title: const Text('Save Project'),
+          content: CupertinoTextField(
+            controller: nameController,
+            placeholder: 'Project Name',
+          ),
+          actions: [
+            CupertinoDialogAction(
+              child: const Text('Cancel'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            CupertinoDialogAction(
+              child: const Text('Save'),
+              onPressed: () {
+                Provider.of<ProjectService>(context, listen: false).saveProject(
+                  Project()
+                    ..name = nameController.text
+                    ..prompt = prompt
+                    ..code = code,
+                );
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

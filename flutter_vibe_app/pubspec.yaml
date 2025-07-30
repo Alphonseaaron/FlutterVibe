@@ -41,6 +41,8 @@ dependencies:
   in_app_purchase: ^3.1.0
   flutter_inappwebview: ^5.7.2+3
   url_launcher: ^6.1.7
+  dart_openai: ^1.10.0
+  flutter_code_editor: ^0.2.5
 
 dev_dependencies:
   flutter_test:

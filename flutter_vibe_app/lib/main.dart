@@ -14,6 +14,23 @@ import 'package:flutter_vibe_app/core/services/loading_service.dart';
 import 'package:flutter_vibe_app/core/services/location_service.dart';
 import 'package:flutter_vibe_app/core/services/motion_service.dart';
 import 'package:flutter_vibe_app/core/services/page_title_service.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:flutter_vibe_app/app.dart';
+import 'package:flutter_vibe_app/core/services/auth_service.dart';
+import 'package:flutter_vibe_app/core/services/cache_service.dart';
+import 'package:flutter_vibe_app/core/services/config_service.dart';
+import 'package:flutter_vibe_app/core/services/dynamic_link_service.dart';
+import 'package:flutter_vibe_app/core/services/feature_flag_service.dart';
+import 'package:flutter_vibe_app/core/services/file_upload_service.dart';
+import 'package:flutter_vibe_app/core/services/lifecycle_service.dart';
+import 'package:flutter_vibe_app/core/services/loading_service.dart';
+import 'package:flutter_vibe_app/core/services/location_service.dart';
+import 'package:flutter_vibe_app/core/services/motion_service.dart';
+import 'package:flutter_vibe_app/core/services/page_title_service.dart';
+import 'package:flutter_vibe_app/core/services/project_service.dart';
 import 'package:flutter_vibe_app/core/services/promo_code_service.dart';
 import 'package:flutter_vibe_app/core/services/push_notification_service.dart';
 import 'package:flutter_vibe_app/core/services/sync_service.dart';
@@ -31,6 +48,8 @@ void main() async {
   await initHive();
   await initSyncService();
   await LocationService.init();
+  final projectService = ProjectService();
+  await projectService.init();
   final authService = AuthService();
   await authService.checkAuth();
   final localizationService = LocalizationService();
@@ -48,6 +67,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
+        Provider<ProjectService>.value(value: projectService),
         ChangeNotifierProvider<AuthService>.value(
           value: authService,
         ),
