@@ -21,6 +21,7 @@ import 'package:flutter_vibe_app/shared/widgets/auth_guard.dart';
 import 'package:flutter_vibe_app/shared/widgets/cupertino_switch_list_tile.dart';
 import 'package:flutter_vibe_app/shared/widgets/debug_panel.dart';
 import 'package:flutter_vibe_app/shared/widgets/loading_overlay.dart';
+import 'package:flutter_vibe_app/shared/widgets/confetti.dart';
 import 'package:flutter_vibe_app/shared/widgets/offline_indicator.dart';
 import 'package:flutter_vibe_app/shared/widgets/update_prompt.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +48,7 @@ class App extends StatelessWidget {
           builder: (context, localizationService, child) {
             return CupertinoApp(
               locale: localizationService.locale,
-              title: 'FlutterVibe',
+              title: 'AAppVibe',
               theme: AppTheme.light,
               darkTheme: AppTheme.dark,
               navigatorObservers: [
@@ -79,11 +80,13 @@ class App extends StatelessWidget {
                 },
               ),
               builder: (context, child) {
-                return DebugPanel(
-                  child: LoadingOverlay(
-                    child: UpdatePrompt(
-                      child: OfflineIndicator(
-                        child: child ?? const SizedBox.shrink(),
+                return Confetti(
+                  child: DebugPanel(
+                    child: LoadingOverlay(
+                      child: UpdatePrompt(
+                        child: OfflineIndicator(
+                          child: child ?? const SizedBox.shrink(),
+                        ),
                       ),
                     ),
                   ),
@@ -122,7 +125,7 @@ class TabletLayout extends StatelessWidget {
     return CupertinoSplitView(
       left: CupertinoPageScaffold(
         navigationBar: const CupertinoNavigationBar(
-          middle: Text('FlutterVibe'),
+          middle: Text('AAppVibe'),
         ),
         child: ListView(
           children: [

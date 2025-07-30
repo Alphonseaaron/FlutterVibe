@@ -1,4 +1,4 @@
-name: flutter_vibe_app
+name: aapp_vibe
 description: A new Flutter project.
 
 publish_to: 'none'
@@ -43,6 +43,9 @@ dependencies:
   url_launcher: ^6.1.7
   dart_openai: ^1.10.0
   flutter_code_editor: ^0.2.5
+  rive: ^0.9.1
+  confetti: ^0.7.0
+  liquid_progress_indicator: ^0.4.0
 
 dev_dependencies:
   flutter_test:

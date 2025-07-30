@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_vibe_app/modules/home/home_screen.dart';
-import 'package:flutter_vibe_app/shared/widgets/lottie_animation.dart';
 import 'package:provider/provider.dart';
+import 'package:rive/rive.dart';
 import 'onboarding_controller.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -18,9 +18,9 @@ class OnboardingScreen extends StatelessWidget {
               controller: controller.pageController,
               children: [
                 _buildPage(
-                  title: 'Welcome to FlutterVibe',
+                  title: 'Welcome to AAppVibe',
                   subtitle: 'The best way to build your app.',
-                  animation: 'assets/animations/welcome.json',
+                  animation: 'assets/animations/character.riv',
                 ),
                 _buildPage(
                   title: 'Create your app',
@@ -62,10 +62,10 @@ class OnboardingScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (animation != null)
-            LottieAnimation(
-              asset: animation,
+            SizedBox(
               width: 200,
               height: 200,
+              child: RiveAnimation.asset(animation),
             ),
           const SizedBox(height: 32),
           Text(
