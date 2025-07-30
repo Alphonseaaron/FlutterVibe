@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_vibe_app/core/services/motion_service.dart';
 import 'package:flutter_vibe_app/localization/localization_service.dart';
+import 'package:flutter_vibe_app/modules/settings/llm_settings_screen.dart';
 import 'package:flutter_vibe_app/shared/widgets/cupertino_switch_list_tile.dart';
 import 'package:provider/provider.dart';
 
@@ -29,6 +30,16 @@ class SettingsScreen extends StatelessWidget {
                 trailing: Text(localizationService.locale.languageCode),
                 onTap: () {
                   _showLanguagePicker(context, localizationService);
+                },
+              ),
+              CupertinoListTile(
+                title: const Text('LLM Settings'),
+                onTap: () {
+                  Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (_) => const LlmSettingsScreen(),
+                    ),
+                  );
                 },
               ),
             ],
