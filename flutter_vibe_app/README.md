@@ -65,6 +65,29 @@ samples, guidance on mobile development, and a full API reference.
 
     Replace `YOUR_PROJECT_ID` with your Google Cloud project ID.
 
+## AppVibe Firebase Rules
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId;
+    }
+    match /buildRequests/{buildRequestId} {
+      allow read, write: if request.auth != null;
+    }
+    match /templates/{templateId} {
+      allow read;
+      allow write: if request.auth.token.admin == true;
+    }
+    match /logs/{logId} {
+      allow read, write: if request.auth.token.admin == true;
+    }
+  }
+}
+```
+
 3.  **Deploy the Docker image to Cloud Run:** Deploy the Docker image to Cloud Run by running the following command:
 
     ```
