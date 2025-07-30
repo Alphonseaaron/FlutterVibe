@@ -24,10 +24,8 @@ class PreviewScreen extends StatelessWidget {
               padding: EdgeInsets.zero,
               child: const Icon(CupertinoIcons.download_circle),
               onPressed: () async {
-                final url = await AppBuildService().buildApp(code);
-                if (await canLaunch(url)) {
-                  await launch(url);
-                }
+                final urls = await AppBuildService().buildApp(code);
+                _showDownloadDialog(context, urls);
               },
             ),
             CupertinoButton(
@@ -65,6 +63,40 @@ class PreviewScreen extends StatelessWidget {
           </html>
         """),
       ),
+    );
+  }
+
+  void _showDownloadDialog(
+      BuildContext context, Map<String, String> urls) {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (context) {
+        return CupertinoActionSheet(
+          title: const Text('Download'),
+          actions: [
+            CupertinoActionSheetAction(
+              child: const Text('Android (APK)'),
+              onPressed: () async {
+                if (await canLaunch(urls['apk']!)) {
+                  await launch(urls['apk']!);
+                }
+              },
+            ),
+            CupertinoActionSheetAction(
+              child: const Text('iOS (IPA)'),
+              onPressed: () async {
+                if (await canLaunch(urls['ipa']!)) {
+                  await launch(urls['ipa']!);
+                }
+              },
+            ),
+          ],
+          cancelButton: CupertinoActionSheetAction(
+            child: const Text('Cancel'),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        );
+      },
     );
   }
 
